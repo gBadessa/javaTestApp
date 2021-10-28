@@ -83,4 +83,10 @@ public class LogCorridaBusiness implements ILogCorridaBusiness {
     public List<LogCorridaEntity> getListaRepositorio() {
         return logCorridaRepository.getLogsCorrida();
     }
+
+
+    @Override
+    public List<LogCorridaEntity> getPosicaoChegadaPilotos() {
+        return logCorridaRepository.getPosicaoChegadaPilotos();
+    }
 }

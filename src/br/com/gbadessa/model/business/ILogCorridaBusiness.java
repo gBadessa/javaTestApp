@@ -11,4 +11,6 @@ public interface ILogCorridaBusiness {
 
     ValidationResultUtil carregaLogsCorridaMemoria();
     List<LogCorridaEntity> getListaRepositorio();
+
+    List<LogCorridaEntity> getPosicaoChegadaPilotos();
 }
