@@ -4,6 +4,7 @@ import br.com.gbadessa.model.entities.LogCorridaEntity;
 import br.com.gbadessa.model.repositories.ILogCorridaRepository;
 import br.com.gbadessa.util.ArquivoUtil;
 import br.com.gbadessa.util.TimeUtil;
+import br.com.gbadessa.util.ValidationResultUtil;
 
 import java.io.IOException;
 import java.time.LocalTime;
@@ -63,5 +64,23 @@ public class LogCorridaBusiness implements ILogCorridaBusiness {
         LocalTime _tempoVolta = TimeUtil.convertLocalTimeString(tempoVolta);
         Double _velocidadeMediaVolta = Double.valueOf(velocidadeMediaVolta.replace(",", "."));
         return new LogCorridaEntity(_hora, _piloto, _numVolta, _tempoVolta, _velocidadeMediaVolta);
+    }
+
+
+    @Override
+    public ValidationResultUtil carregaLogsCorridaMemoria(){
+        //
+        try {
+            logCorridaRepository.setLogsCorrida(geraListaLogsCorrida(ArquivoUtil.getLinhasArquivoLog()));
+            return ValidationResultUtil.setSucesso();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ValidationResultUtil.setFalha(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<LogCorridaEntity> getListaRepositorio() {
+        return logCorridaRepository.getLogsCorrida();
     }
 }
