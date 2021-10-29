@@ -1,6 +1,8 @@
 package br.com.gbadessa.ui;
 
+import br.com.gbadessa.util.ConstantesUtil;
 import br.com.gbadessa.util.PrintMsgUtil;
+import br.com.gbadessa.util.ThreadUtil;
 
 /**
  * SplashScreenAppView
@@ -44,11 +46,24 @@ public class SplashScreenAppView {
             public void onPrintMsg(String msg) {
                 imprimeMsg(msg);
             }
+
+            @Override
+            public void onSleep() {
+                try {
+                    aguarda1Segundo();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
         });
     }
 
     private static void imprimeMsg(String str){
         PrintMsgUtil.imprimeMsg(str);
+    }
+
+    private void aguarda1Segundo() throws InterruptedException {
+        ThreadUtil.aguarda1Segundo();
     }
 
     //endregion Métodos

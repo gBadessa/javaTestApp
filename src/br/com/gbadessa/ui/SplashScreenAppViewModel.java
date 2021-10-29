@@ -48,7 +48,7 @@ public class SplashScreenAppViewModel {
 
             //Exibe msg de falha e finaliza a aplicação no caso de erro
             if(result.isFalha()){
-                imprimeMsg(result.getResultMensagem());
+                solicitaImpressaoMsg(result.getResultMensagem());
                 return;
             }
 
@@ -68,32 +68,33 @@ public class SplashScreenAppViewModel {
     }
 
     private void iniciaSplash() throws InterruptedException {
-        imprimeMsg(StringUtil.msgSplashAppIniciando);
-        //
-        aguarda1Segundo();
+        solicitaImpressaoMsg(StringUtil.msgSplashIniciando);
+        solicitaImpressaoMsg(StringUtil.msgSplashAppIniciando);
+        solicitaAguardar();
     }
 
     private void iniciaCarregamentoRecursos() {
-        imprimeMsg(StringUtil.msgSplashAppRecursosCarregando);
+        solicitaImpressaoMsg(StringUtil.msgSplashAppRecursosCarregando);
     }
 
     private void finalizaCarregamentoRecursos() {
-        imprimeMsg(StringUtil.msgSplashAppRecursosSucesso);
+        solicitaImpressaoMsg(StringUtil.msgSplashAppRecursosSucesso);
     }
 
     private void finalizaSplash() throws InterruptedException {
-        aguarda1Segundo();
-        //
-        imprimeMsg(StringUtil.msgSplashAppFinalizando);
+        solicitaImpressaoMsg(StringUtil.msgSplashFinalizando);
+        solicitaImpressaoMsg(StringUtil.pulaLinha);
+        solicitaAguardar();
     }
 
-    private void aguarda1Segundo() throws InterruptedException {
-        Thread.sleep(ConstantesUtil.UM_SEGUNDO_EM_MILISEGUNDOS);
-    }
-
-    private void imprimeMsg(String str) {
+    private void solicitaImpressaoMsg(String str) {
         if(iSplashScreenAppViewModelListner != null)
             iSplashScreenAppViewModelListner.onPrintMsg(str);
+    }
+
+    private void solicitaAguardar() {
+        if(iSplashScreenAppViewModelListner != null)
+            iSplashScreenAppViewModelListner.onSleep();
     }
 
     //endregion Metodos
@@ -104,6 +105,7 @@ public class SplashScreenAppViewModel {
 
     public interface ISplashScreenAppViewModelListner {
         void onPrintMsg(String msg);
+        void onSleep();
     }
 
     //region getters setters

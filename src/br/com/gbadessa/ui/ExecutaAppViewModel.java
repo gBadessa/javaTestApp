@@ -3,96 +3,65 @@ package br.com.gbadessa.ui;
 import br.com.gbadessa.Main;
 import br.com.gbadessa.model.business.ILogCorridaBusiness;
 import br.com.gbadessa.model.viewobjecties.LogCorridaViewObject;
-import br.com.gbadessa.util.ConstantesUtil;
 import br.com.gbadessa.util.StringUtil;
 
 import java.util.List;
 
+/**
+ * ExecutaAppViewModel
+ * Classe que acessa os objetos de negócio (Business) e retorna status das execuções para a View que é a responsável
+ * pela exibição das mensagens para o usuário.
+ */
 public class ExecutaAppViewModel {
 
-    //private LogCorridaBusiness logCorridaBusiness;
+    //region Atributos
+
     private ILogCorridaBusiness logCorridaBusiness;
+
+    //endregion Atributos
+
+    //region Contrutores
 
     public ExecutaAppViewModel() {
         iniciaBusinessObjects();
     }
 
+    //endregion Contrutores
+
+    //region Metodos
+
+    /**
+     * iniciaBusinessObjects
+     * Método responsável por recuperar objeto Container e extrair do mesmo os objetos de negócios instanciados ao iniciar a aplicação.
+     */
     private void iniciaBusinessObjects() {
         logCorridaBusiness = Main.appContainer.getLogCorridaBusiness();
     }
 
-    //region Metodos
     public void run() {
         try {
-
             iniciaApp();
-            //List<LogCorridaEntity> logCorridaEntities = buscaListaLogs();
-
-            //buscaPosicaoChegada();
             buscaResultados();
-
-            //buscaVencedor();
             finalizaApp();
-
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-//    public List<LogCorridaEntity> buscaListaLogs() {
-//        return logCorridaBusiness.getLogsCorrida();
-//    }
-
-//    public void buscaVencedor() {
-//
-//        List<LogCorridaEntity> resultadoCorrida = logCorridaBusiness.getResultadoCorrida();
-//        for (LogCorridaEntity log: resultadoCorrida) {
-//            imprimeMsg(log.toString());
-//        }
-//
-//        LogCorridaEntity vencedor = logCorridaBusiness.getVencedor();
-//        imprimeMsg(vencedor.getPiloto());
-//    }
-//
-//    public void buscaPosicaoChegada(){
-//        List<LogCorridaEntity> resultadoCorrida = logCorridaBusiness.getPosicaoChegada();
-//        for (LogCorridaEntity log: resultadoCorrida) {
-//            imprimeMsg(log.toString());
-//        }
-//    }
-
     public void buscaResultados(){
         List<LogCorridaViewObject> resultadoCorrida = logCorridaBusiness.getResultados();
-//        for (DetalheCorridaEntity detalhe: resultadoCorrida) {
-//            imprimeMsg(detalhe.toString());
-//        }
-
-        resultadoCorrida.forEach(result -> imprimeMsg(result.toString()));
+        resultadoCorrida.forEach(result -> solicitaImpressaoMsg(result.toString()));
     }
 
-    private void iniciaApp() throws InterruptedException {
-        imprimeMsg(StringUtil.msgSplashAppIniciando);
-        pulaLinha();
-        //
-        aguarda1Segundo();
+    private void iniciaApp(){
+        solicitaImpressaoMsg(StringUtil.msgDesafioIniciando);
     }
 
-    private void finalizaApp() throws InterruptedException {
-        aguarda1Segundo();
-        //
-        pulaLinha();
-        imprimeMsg(StringUtil.msgSplashAppFinalizando);
+    private void finalizaApp(){
+        solicitaImpressaoMsg(StringUtil.msgDesafioFinalizando);
     }
 
-    private void aguarda1Segundo() throws InterruptedException {
-        Thread.sleep(ConstantesUtil.UM_SEGUNDO_EM_MILISEGUNDOS);
-    }
-
-    private void pulaLinha() {
-        imprimeMsg(StringUtil.pulaLinha);
-    }
-
-    private void imprimeMsg(String str) {
+    private void solicitaImpressaoMsg(String str) {
         if(iExecutaAppViewModelListner != null)
             iExecutaAppViewModelListner.onPrintMsg(str);
     }
@@ -117,8 +86,7 @@ public class ExecutaAppViewModel {
         this.iExecutaAppViewModelListner = iExecutaAppViewModelListner;
     }
 
+    //endregion getters setters
 
-    //endregion
-
-    //endregion
+    //endregion Interfaces
 }

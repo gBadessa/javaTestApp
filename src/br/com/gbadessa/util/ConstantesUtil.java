@@ -5,7 +5,6 @@ package br.com.gbadessa.util;
  * Classe responsável por centralizar constantes utilizadas no sistema
  */
 public class ConstantesUtil {
-
     public static final int UM_SEGUNDO_EM_MILISEGUNDOS = 1000;
     public static final String FORMAT_HORA_MINUTO_SEGUNDO_MILISSEGUNDOS = "HH:mm:ss.SSS";
     public static final String FORMAT_M_SEGUNDO_MILISSEGUNDOS = "m:ss.SSS";

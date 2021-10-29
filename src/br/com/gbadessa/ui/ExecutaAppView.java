@@ -49,14 +49,6 @@ public class ExecutaAppView {
         });
     }
 
-    private static void aguarda1Segundo() throws InterruptedException {
-        Thread.sleep(ConstantesUtil.UM_SEGUNDO_EM_MILISEGUNDOS);
-    }
-
-    private static void pulaLinha(){
-        PrintMsgUtil.imprimeMsg(StringUtil.pulaLinha);
-    }
-
     private static void imprimeMsg(String str){
         PrintMsgUtil.imprimeMsg(str);
     }
