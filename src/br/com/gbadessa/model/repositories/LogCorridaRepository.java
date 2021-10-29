@@ -9,8 +9,11 @@ import java.util.stream.Collectors;
 
 public class LogCorridaRepository implements ILogCorridaRepository{
 
+    /**
+     * listLogsCorrida
+     * Lista estática que armazena em memória os logs da corrida
+     */
     private static List<LogCorridaEntity> listLogsCorrida;
-
     //
     @Override
     public boolean setLogsCorrida(List<LogCorridaEntity> listEntity) {
@@ -25,38 +28,12 @@ public class LogCorridaRepository implements ILogCorridaRepository{
 
     @Override
     public List<LogCorridaEntity> getLogsCorrida() {
+        /*
+        Retorna lista alocada em  memória pois não foi objetivo nesse momento implementar a busca dessa informação de outra maneira.
+        Contudo, no contexto da aplicação, se necessário buscar a informação de algum outro lugar, pode-se facilmente implementar
+        no repositório a requisção a um banco de dados, arquivo de texto, chamada de uma API, ect, demonstrando a flexibilidade da estrutura
+        em possível alterações do projeto
+         */
         return listLogsCorrida;
-    }
-
-    @Override
-    public List<LogCorridaEntity> getPosicaoChegadaPilotos() {
-        List<LogCorridaEntity> listaChegada = getResultadoCorrida();
-        return listaChegada.stream()
-                .filter(ListFilterUtil.distinctByKey(LogCorridaEntity::getPiloto))
-                .collect(Collectors.toList());
-    }
-
-    private List<LogCorridaEntity> getResultadoCorrida() {
-        //Recupera lista de logs do repositório (lista estatica carregada)
-        List<LogCorridaEntity> listaOrdenada = getLogsCorrida();
-
-        //Oderna lista para identificar a ordem final de chegada dos pilotos
-        listaOrdenada.sort((o1, o2) -> {
-            int comparacaoResult = 0;
-
-            //Compara e ordena pelo n° Voltas (Descendente)
-            comparacaoResult = o2.getNumVolta().compareTo(o1.getNumVolta());
-
-            //Se n° Volta são iguais, desempata pela Hora
-            if (comparacaoResult == 0) {
-                //
-                //Compara pela hora (Ascendente)
-                comparacaoResult = o1.getHora().compareTo(o2.getHora());
-            }
-            //
-            return comparacaoResult;
-        });
-        //
-        return listaOrdenada;
     }
 }

@@ -1,6 +1,12 @@
 package br.com.gbadessa.util;
 
+/**
+ * ValidationResultUtil
+ * Classe responsável pelo retorno de validações do sistema e retorno de msg de erro ou sucesso (se aplicáveis)
+ */
 public class ValidationResultUtil {
+
+    //region Atributos
 
     private enum Result {
         SUCESSO,
@@ -14,6 +20,10 @@ public class ValidationResultUtil {
     }
 
     private Result result;
+
+    //endregion Atributos
+
+    //region Métodos
 
     public boolean isSucesso(){
         return result == Result.SUCESSO;
@@ -35,4 +45,6 @@ public class ValidationResultUtil {
         result.result = Result.FALHA;
         return result;
     }
+
+    //endregion Métodos
 }

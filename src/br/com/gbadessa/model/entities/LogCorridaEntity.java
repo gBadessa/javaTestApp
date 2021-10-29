@@ -2,7 +2,13 @@ package br.com.gbadessa.model.entities;
 
 import java.time.LocalTime;
 
+/**
+ * LogCorridaEntity
+ * Classe que representa uma entidade do sistema relacionada ao Log da Corrida
+ */
 public class LogCorridaEntity {
+
+    //region Construtor
 
     public LogCorridaEntity(LocalTime hora, String piloto, Integer numVolta, LocalTime tempoVolta, Double velocidadeMediaVolta) {
         this.hora = hora;
@@ -12,11 +18,19 @@ public class LogCorridaEntity {
         VelocidadeMediaVolta = velocidadeMediaVolta;
     }
 
+    //endregion Construtor
+
+    //region Atributos
+
     private LocalTime hora;
     private String piloto;
     private Integer numVolta;
     private LocalTime tempoVolta;
     private Double VelocidadeMediaVolta;
+
+    //endregion Atributos
+
+    //region Getter's/ Setter's
 
     public LocalTime getHora() {
         return hora;
@@ -58,6 +72,10 @@ public class LogCorridaEntity {
         VelocidadeMediaVolta = velocidadeMediaVolta;
     }
 
+    //endregion //region Getter's/ Setter's
+
+    //region toString
+
     @Override
     public String toString() {
         return "" +
@@ -68,4 +86,6 @@ public class LogCorridaEntity {
                 ", VelocidadeMediaVolta=" + VelocidadeMediaVolta +
                 "";
     }
+
+    //endregion toString
 }
