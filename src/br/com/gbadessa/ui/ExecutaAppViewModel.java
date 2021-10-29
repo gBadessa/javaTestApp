@@ -3,7 +3,9 @@ package br.com.gbadessa.ui;
 import br.com.gbadessa.Main;
 import br.com.gbadessa.model.business.ILogCorridaBusiness;
 import br.com.gbadessa.model.viewobjecties.LogCorridaViewObject;
-import br.com.gbadessa.util.StringUtil;
+import br.com.gbadessa.util.ConstantesUtil;
+import br.com.gbadessa.util.StringMethodsUtil;
+import br.com.gbadessa.util.StringResourcesUtil;
 
 import java.util.List;
 
@@ -40,9 +42,7 @@ public class ExecutaAppViewModel {
 
     public void run() {
         try {
-            iniciaApp();
             buscaResultados();
-            finalizaApp();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -50,15 +50,45 @@ public class ExecutaAppViewModel {
 
     public void buscaResultados(){
         List<LogCorridaViewObject> resultadoCorrida = logCorridaBusiness.getResultados();
-        resultadoCorrida.forEach(result -> solicitaImpressaoMsg(result.toString()));
+
+        imprimeCabecalhoResultado();
+        resultadoCorrida.forEach(item -> {
+            String resultado =
+                    ajustaLinhaImpressao(item.getPosicaoChegada().toString()) +
+                    ajustaLinhaImpressao(item.getCodPiloto()) +
+                    ajustaLinhaImpressao(item.getNomePiloto()) +
+                    ajustaLinhaImpressao(item.getNumVoltasCompletadas().toString()) +
+                    ajustaLinhaImpressao(item.getTempoTotalProva().toString()) +
+                    ajustaLinhaImpressao(item.getMelhorVoltaPiloto().toString()) +
+                    ajustaLinhaImpressao(item.getMelhorVoltaCorrida()) +
+                    ajustaLinhaImpressao(item.getVelocidadeMediaPiloto().toString()) +
+                    ajustaLinhaImpressao(item.getTempoAposVencedor().toString());
+            //
+            solicitaImpressaoMsg(resultado);
+        });
     }
 
-    private void iniciaApp(){
-        solicitaImpressaoMsg(StringUtil.msgDesafioIniciando);
+    private void imprimeCabecalhoResultado(){
+
+        solicitaImpressaoMsg(StringResourcesUtil.msgAppFinalizando);
+        //
+        String result =
+                ajustaLinhaImpressao(StringResourcesUtil.Posiçao) +
+                ajustaLinhaImpressao(StringResourcesUtil.CodigoPiloto) +
+                ajustaLinhaImpressao(StringResourcesUtil.NomePiloto) +
+                ajustaLinhaImpressao(StringResourcesUtil.VoltasCompletadas) +
+                ajustaLinhaImpressao(StringResourcesUtil.TempoTotalProva) +
+                ajustaLinhaImpressao(StringResourcesUtil.MelhorVoltaPiloto) +
+                ajustaLinhaImpressao(StringResourcesUtil.MelhorVoltaCorrida) +
+                ajustaLinhaImpressao(StringResourcesUtil.VelocMediaPiloto) +
+                ajustaLinhaImpressao(StringResourcesUtil.TempoAposVencedor);
+        //
+        solicitaImpressaoMsg(result);
     }
 
-    private void finalizaApp(){
-        solicitaImpressaoMsg(StringUtil.msgDesafioFinalizando);
+    private String ajustaLinhaImpressao(String str){
+        Integer length = ConstantesUtil.CABECALHO_COLUNAS_SIZE;
+        return StringMethodsUtil.RPad(str, length, ' ');
     }
 
     private void solicitaImpressaoMsg(String str) {

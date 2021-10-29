@@ -9,7 +9,7 @@ public class PrintMsgUtil {
     //region Métodos
 
     public static void pulaLinha() {
-        imprimeMsg(StringUtil.pulaLinha);
+        imprimeMsg(StringResourcesUtil.pulaLinha);
     }
 
     public static void imprimeMsg(String str) {

@@ -32,7 +32,7 @@ public class ArquivoUtil {
      * @throws IOException – Retorna IOException no caso de erro
      */
     public static List<String> getLinhasArquivo(String nomArquivo) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(String.format(StringUtil.concatenaStringsBarra, DIR_ARQUIVOS, nomArquivo)));
+        BufferedReader br = new BufferedReader(new FileReader(String.format(StringResourcesUtil.concatenaStringsBarra, DIR_ARQUIVOS, nomArquivo)));
         List<String> linhas = br.lines().collect(Collectors.toList());
         br.close();
         //

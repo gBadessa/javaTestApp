@@ -2,8 +2,7 @@ package br.com.gbadessa.ui;
 
 import br.com.gbadessa.Main;
 import br.com.gbadessa.model.business.ILogCorridaBusiness;
-import br.com.gbadessa.util.ConstantesUtil;
-import br.com.gbadessa.util.StringUtil;
+import br.com.gbadessa.util.StringResourcesUtil;
 import br.com.gbadessa.util.ValidationResultUtil;
 
 /**
@@ -68,22 +67,20 @@ public class SplashScreenAppViewModel {
     }
 
     private void iniciaSplash() throws InterruptedException {
-        solicitaImpressaoMsg(StringUtil.msgSplashIniciando);
-        solicitaImpressaoMsg(StringUtil.msgSplashAppIniciando);
+        solicitaImpressaoMsg(StringResourcesUtil.msgAppIniciando);
         solicitaAguardar();
     }
 
     private void iniciaCarregamentoRecursos() {
-        solicitaImpressaoMsg(StringUtil.msgSplashAppRecursosCarregando);
+        solicitaImpressaoMsg(StringResourcesUtil.msgSplashAppRecursosCarregando);
     }
 
     private void finalizaCarregamentoRecursos() {
-        solicitaImpressaoMsg(StringUtil.msgSplashAppRecursosSucesso);
+        solicitaImpressaoMsg(StringResourcesUtil.msgSplashAppRecursosSucesso);
     }
 
     private void finalizaSplash() throws InterruptedException {
-        solicitaImpressaoMsg(StringUtil.msgSplashFinalizando);
-        solicitaImpressaoMsg(StringUtil.pulaLinha);
+        solicitaImpressaoMsg(StringResourcesUtil.pulaLinha);
         solicitaAguardar();
     }
 

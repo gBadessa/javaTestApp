@@ -1,8 +1,6 @@
 package br.com.gbadessa.ui;
 
-import br.com.gbadessa.util.ConstantesUtil;
 import br.com.gbadessa.util.PrintMsgUtil;
-import br.com.gbadessa.util.StringUtil;
 
 /**
  * ExecutaAppView

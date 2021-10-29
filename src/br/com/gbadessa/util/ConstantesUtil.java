@@ -11,4 +11,5 @@ public class ConstantesUtil {
     public static final String FORMAT_MM_SEGUNDO_MILISSEGUNDOS = "mm:ss.SSS";
     public static final String SEPARADOR_CODIGO_NOME_PILOTO = "–";
     public static final String FORMAT_DOUBLE_3_CASAS = "#.###";
+    public static final int CABECALHO_COLUNAS_SIZE = 30;
 }

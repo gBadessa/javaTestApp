@@ -1,6 +1,8 @@
 package br.com.gbadessa.util;
 
+import java.text.DecimalFormat;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -74,8 +76,10 @@ public class TimeUtil {
      * @return LocalTime - Retorna objeto LocalTime com a diferença (t2 - t1)
      */
     public static LocalTime calcula_T2_menos_T1(LocalTime t1, LocalTime t2){
-        if(t1 != null && t2 != null)
-            return t2.minusHours(t1.getHour()).minusMinutes(t1.getMinute()).minusSeconds(t1.getSecond()).minusNanos(t1.getNano());
+        if(t1 != null && t2 != null) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(ConstantesUtil.FORMAT_HORA_MINUTO_SEGUNDO_MILISSEGUNDOS);
+            return LocalTime.parse(t2.minusHours(t1.getHour()).minusMinutes(t1.getMinute()).minusSeconds(t1.getSecond()).minusNanos(t1.getNano()).format(formatter));
+        }
         else
             return null;
     }

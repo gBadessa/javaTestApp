@@ -10,14 +10,14 @@ public class LogCorridaViewObject {
 
     //region Construtor
 
-    public LogCorridaViewObject(Integer posicaoChegada, String codPiloto, String nomePiloto, Integer numVoltasCompletadas, LocalTime tempoTotalProva, LocalTime melhorVoltaPiloto, Boolean isMelhorVoltaCorrida, Double velocidadeMediaPiloto, LocalTime tempoAposVencedor) {
+    public LogCorridaViewObject(Integer posicaoChegada, String codPiloto, String nomePiloto, Integer numVoltasCompletadas, LocalTime tempoTotalProva, LocalTime melhorVoltaPiloto, String melhorVoltaCorrida, Double velocidadeMediaPiloto, LocalTime tempoAposVencedor) {
         this.posicaoChegada = posicaoChegada;
         this.codPiloto = codPiloto;
         this.nomePiloto = nomePiloto;
         this.numVoltasCompletadas = numVoltasCompletadas;
         this.tempoTotalProva = tempoTotalProva;
         this.melhorVoltaPiloto = melhorVoltaPiloto;
-        this.isMelhorVoltaCorrida = isMelhorVoltaCorrida;
+        this.melhorVoltaCorrida = melhorVoltaCorrida;
         this.velocidadeMediaPiloto = velocidadeMediaPiloto;
         this.tempoAposVencedor = tempoAposVencedor;
     }
@@ -33,7 +33,7 @@ public class LogCorridaViewObject {
     private LocalTime tempoTotalProva;
     //
     private LocalTime melhorVoltaPiloto;
-    private Boolean isMelhorVoltaCorrida;
+    private String melhorVoltaCorrida;
     private Double velocidadeMediaPiloto;
     private LocalTime tempoAposVencedor;
 
@@ -89,12 +89,12 @@ public class LogCorridaViewObject {
         this.melhorVoltaPiloto = melhorVoltaPiloto;
     }
 
-    public Boolean getMelhorVoltaCorrida() {
-        return isMelhorVoltaCorrida;
+    public String getMelhorVoltaCorrida() {
+        return melhorVoltaCorrida;
     }
 
-    public void setMelhorVoltaCorrida(Boolean melhorVoltaCorrida) {
-        isMelhorVoltaCorrida = melhorVoltaCorrida;
+    public void setMelhorVoltaCorrida(String melhorVoltaCorrida) {
+        this.melhorVoltaCorrida = melhorVoltaCorrida;
     }
 
     public Double getVelocidadeMediaPiloto() {
@@ -114,23 +114,4 @@ public class LogCorridaViewObject {
     }
 
     //endregion //region Getter's/ Setter's
-
-    //region toString
-
-    @Override
-    public String toString() {
-        return "DetalheCorridaEntity{" +
-                "posicaoChegada=" + posicaoChegada +
-                ", codPiloto='" + codPiloto + '\'' +
-                ", nomePiloto='" + nomePiloto + '\'' +
-                ", numVoltasCompletadas=" + numVoltasCompletadas +
-                ", tempoTotalProva=" + tempoTotalProva +
-                ", melhorVoltaPiloto=" + melhorVoltaPiloto +
-                ", isMelhorVoltaCorrida=" + isMelhorVoltaCorrida +
-                ", velocidadeMediaPiloto=" + velocidadeMediaPiloto +
-                ", tempoAposVencedor=" + tempoAposVencedor +
-                '}';
-    }
-
-    //endregion toString
 }

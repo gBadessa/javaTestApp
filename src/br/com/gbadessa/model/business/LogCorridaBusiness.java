@@ -13,8 +13,18 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * LogCorridaBusiness
+ * Contém a implementação das regras de negócio relacionadas ao Log de Corrida
+ * Recebe solicitação do viewModel e quando necessário realiza buscas do repositório para retornar para o viewModel os
+ * dados tratados em um formato esperado
+ */
 public class LogCorridaBusiness implements ILogCorridaBusiness {
 
+    /**
+     * ILogCorridaRepository
+     * Interface do repositório recebida via construtor no momento de sua criação
+     */
     private final ILogCorridaRepository logCorridaRepository;
 
     /**
@@ -114,7 +124,7 @@ public class LogCorridaBusiness implements ILogCorridaBusiness {
             Integer numVoltasCompletadas = it.getNumVolta();
             LocalTime tempoTotalProva = getTempoTotalProvaPiloto(listVoltasPiloto);
             LocalTime melhorVoltaPiloto = getMelhorVoltaPiloto(listVoltasPiloto);
-            Boolean isMelhorVoltaCorrida = isMelhorVoltaCorrida(melhorVoltaPiloto, melhorVoltaCorrida);
+            String isMelhorVoltaCorrida = isMelhorVoltaCorrida(melhorVoltaPiloto, melhorVoltaCorrida) ? StringResourcesUtil.Sim : StringResourcesUtil.Nao;
             Double velocidadeMediaPiloto = getVelocidadeMediaPiloto(listVoltasPiloto);
             LocalTime tempoAposVencedor = i == 1 ?
                     getTempoPilotoAtrasVencedor(tempoTotalProva, tempoTotalProva) :
